@@ -38,7 +38,8 @@ public class PlayerController : MonoBehaviour
 		
 		rb.AddForce(rollingVector);
 	}
-
+	
+	//Movement Functions
 	void OnMove(InputValue movementValue)
 	{
 		Vector2 movementVector = movementValue.Get<Vector2>();
@@ -75,4 +76,13 @@ public class PlayerController : MonoBehaviour
 		delayCheck = true;
 	}
 	
+	//Collision Functions
+ void OnTriggerEnter(Collider otherObj)
+ {
+ 	if (otherObj.gameObject.CompareTag("PickupObj"))
+	{
+		Debug.Log("PlayerController.cs : Player collided with Obj " + otherObj.transform.name);
+		Destroy(otherObj.gameObject);
+	}
+ }
 }
